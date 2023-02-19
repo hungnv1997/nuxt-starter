@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+    nuxt:
+        driver: bridge
+
+services:
+
+### NuxtJS frontend Container #############################
+    nuxtjs:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        # volumes_from:
+        #     - ./app:/app
+        ports:
+            - 3000:3000
+        container_name: nuxt-js
+        command: ["yarn", "dev"]
+        networks:
+            - nuxt
+
+    # nuxtjs:
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     # volumes_from:
+    #     #     - ./app:/app
+    #     ports:
+    #         - 3001:3000
+    #     container_name: nuxt-js
+    #     command: ["yarn", "staging"]
+    #     networks:
+    #         - nuxt
+    # nuxtjs:
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     # volumes_from:
+    #     #     - ./app:/app
+    #     ports:
+    #         - 3000:3000
+    #     container_name: nuxt-js
+    #     command: ["yarn", "production"]
+    #     networks:
+    #         - nuxt
